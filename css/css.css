@@ -1,0 +1,25 @@
+* {
+    -fx-font-size: 20;
+    -fx-text-background-color: #0099FF;
+}
+
+#currentMonth {
+    -fx-text-background-color: #0099FF;
+}
+
+#opaque {
+    -fx-background-color: white;
+}
+
+#navigationButtons {
+    -fx-border: black 2px;
+    -fx-background-color: white;
+}
+
+.toggle-button {
+    -fx-background-color: white;
+}
+
+.toggle-button:selected {
+    -fx-background-color: gainsboro;
+}
