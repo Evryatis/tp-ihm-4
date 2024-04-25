@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -54,26 +55,45 @@ public class GridPaneFormulaireReservation extends GridPane {
 
         ComboBox<String> comboHeureDebut = new ComboBox<>();
         comboHeureDebut.getItems().addAll("07", "08", "09", "10", "11", "13", "14", "15");
+        comboHeureDebut.setValue("07");
 
         ComboBox<String> comboMinuteDebut = new ComboBox<>();
         comboMinuteDebut.getItems().addAll("00", "15", "30", "45");
+        comboMinuteDebut.setValue("00");
 
         ComboBox<String> comboHeureFin = new ComboBox<>();
         comboHeureFin.getItems().addAll("07", "08", "09", "10", "11", "13", "14", "15");
+        comboHeureFin.setValue("10");
 
         ComboBox<String> comboMinuteFin = new ComboBox<>();
         comboMinuteFin.getItems().addAll("00", "15", "30", "45");
+        comboMinuteFin.setValue("30");
 
-        RadioButton boutton = new RadioButton("débutant");
+        // Bouton d'enregistrement/D'annulement
+        Button boutonAnnul = new Button("Annuler");
+        Button boutonEnreg = new Button("Enregistrer");
 
-        RadioButton boutton_moyen = new RadioButton("moyen");
+
+        ToggleGroup groupeNiveau = new ToggleGroup();
+        RadioButton boutonDebutant = new RadioButton("débutant");
+        boutonDebutant.setSelected(true);
+        boutonDebutant.setToggleGroup(groupeNiveau);
+        RadioButton boutonMoyen = new RadioButton("moyen");
+        boutonMoyen.setToggleGroup(groupeNiveau);
+        RadioButton boutonDur = new RadioButton("difficile");
+        boutonDur.setToggleGroup(groupeNiveau);
+        RadioButton boutonExpert = new RadioButton("expert");
+        boutonExpert.setToggleGroup(groupeNiveau);
+
 
         Separator separateur = new Separator();
 
         TextField text_cours = new TextField();
         text_cours.setPrefHeight(3);
 
-        this.add(labelDate, 0, ligne++, 6, 1);
+        Platform.runLater(() -> text_cours.requestFocus());
+
+        this.add(labelDate, 1, ligne++, 6, 1);
         this.add(labelCours, 0, ligne, 1, 1);
         this.add(text_cours, 1, ligne++, 5, 1);
         this.add(labelheuredebut, 0, ligne, 1, 1);
@@ -88,7 +108,12 @@ public class GridPaneFormulaireReservation extends GridPane {
         this.add(label_mn_fi, 4, ligne++, 1, 1);
 
         this.add(label_nv, 0, ligne, 1, 1);
-        this.add(boutton, 1, ligne, 1, 1);
-        this.add(boutton_moyen, 2, ligne, 1, 1);
+        this.add(boutonDebutant, 1, ligne, 1, 1);
+        this.add(boutonMoyen, 2, ligne++, 1, 1);
+        this.add(boutonDur, 1, ligne, 1, 1);
+        this.add(boutonExpert, 2, ligne++, 1, 1);
+
+        this.add(boutonEnreg, 1, ligne, 1, 1);
+        this.add(boutonAnnul, 2, ligne, 1, 1);
     }
 }

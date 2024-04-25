@@ -15,7 +15,7 @@ public class Vue_Main extends Application {
         // Crée une instance de VBoxRoot
         // VBoxCalendrier root = new VBoxCalendrier();
         HBoxRoot root  = new HBoxRoot();
-        Scene scene = new Scene(root, 800, 400);
+        Scene scene = new Scene(root, 1200, 400);
         File css = new File("css" + File.separator + "css.css");
         scene.getStylesheets().add(css.toURI().toString());
         stage.setScene(scene);

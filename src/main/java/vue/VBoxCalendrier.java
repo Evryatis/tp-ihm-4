@@ -62,12 +62,17 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
 
                 boutonDate.setUserData(date);
 
+                boutonDate.setOnAction(HBoxRoot.getControleur());
+
+                /*
                 boutonDate.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         System.out.println(boutonDate.getUserData());
                     }
                 });
+                */
+
 
                 if (date.getMois() != monthCalendar.getMois()) {
                     boutonDate.setId("dateHorsMois");

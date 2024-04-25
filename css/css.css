@@ -18,8 +18,21 @@
 
 .toggle-button {
     -fx-background-color: white;
+    -fx-cell-size: 3;
 }
 
 .toggle-button:selected {
     -fx-background-color: gainsboro;
+}
+
+.radio-button {
+    -fx-cell-size: 1;
+}
+
+.combo-box {
+    -fx-border-color: lightblue;
+}
+
+.text-field {
+    -fx-border-color: lightblue;
 }
