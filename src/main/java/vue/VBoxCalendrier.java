@@ -97,6 +97,8 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
             listMonthCalendars.get(LAST_INDICE).toBack();
         }
 
+
+
         // Création des boutons de navigation
         HBox buttonHBox = new HBox();
 

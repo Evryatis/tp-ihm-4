@@ -3,14 +3,16 @@ package modele;
 public class Reservation {
 
     private Date chDate;
-    private PlageHoraire chPlageHoraire;
+    private Horaire chPlageHoraireDebut;
+    private Horaire chPlageHoraireFin;
     private String chIntitule;
 
-    public Reservation(Date parDate, PlageHoraire parPlageHoraire, String parIntitule) {
+    public Reservation(Date parDate, Horaire parPlageHoraireDebut, Horaire parPlageHoraireFin, String parIntitule) {
 
 
         this.chDate = parDate;
-        this.chPlageHoraire = parPlageHoraire;
+        this.chPlageHoraireDebut = parPlageHoraireDebut;
+        this.chPlageHoraireFin = parPlageHoraireFin;
         this.chIntitule = parIntitule;
 
     }
@@ -22,6 +24,7 @@ public class Reservation {
      * Elle renvoie 0 quand this et parReservation sont égales ou incompatibles
      * @return int
      */
+    /*
     public int compareTo(Reservation parReservation){
         int compareDate = this.chDate.compareTo(parReservation.chDate);
         if (compareDate != 0)
@@ -30,6 +33,9 @@ public class Reservation {
         return this.chPlageHoraire.compareTo(parReservation.chPlageHoraire);
 
     }
+
+     */
+    /*
     public boolean estValide(){
 
         if (!chDate.estValide())
@@ -41,6 +47,8 @@ public class Reservation {
         return true;
     }
 
+     */
+
     public Date getDate(){
         return chDate;
     }
@@ -49,7 +57,7 @@ public class Reservation {
     
     public String toString(){
 
-        return chIntitule + ", " + chDate.toString() + "," + chPlageHoraire.toString();
+        return chIntitule + ", " + chDate.toString() + ", " + chPlageHoraireDebut.toString() + ", " + chPlageHoraireFin;
 
     }
 

@@ -36,3 +36,7 @@
 .text-field {
     -fx-border-color: lightblue;
 }
+
+.scroll-bar {
+    -fx-border-color: lightblue;
+}

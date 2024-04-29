@@ -15,18 +15,18 @@ public class HBoxRoot extends HBox {
 
     public HBoxRoot(){
 
+        planning = new PlanningCollections();
+        controleur = new Controleur();
         calendrierPane = new VBoxCalendrier();
         reservationPane = new GridPaneFormulaireReservation();
-        controleur = new Controleur();
-        planning = new PlanningCollections();
+
 
 
         VBoxCalendrier VBoxCal = new VBoxCalendrier();
         this.getChildren().add(VBoxCal);
 
         // Commencement du TP4
-        GridPaneFormulaireReservation gridPaneForm = new GridPaneFormulaireReservation();
-        this.getChildren().add(gridPaneForm);
+        this.getChildren().add(reservationPane);
 
     }
 

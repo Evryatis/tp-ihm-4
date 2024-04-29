@@ -1,24 +1,22 @@
 package vue;
 
 import javafx.application.Platform;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import modele.DateCalendrier;
-import org.controlsfx.control.spreadsheet.Grid;
+import modele.Horaire;
 
 public class GridPaneFormulaireReservation extends GridPane {
 
-    TextField textFieldCours;
-    ToggleGroup levelGroup = new ToggleGroup();
-    ComboBox<String> comboHd;
-    ComboBox<String> comboHf;
-    ComboBox<String> comboMnD;
-    ComboBox<String> comboMnF;
+    public TextField textFieldCours;
+    public Label labelDate;
+    public DateCalendrier date;
+    public ToggleGroup levelGroup = new ToggleGroup();
+    public ComboBox<String> comboHd;
+    public ComboBox<String> comboHf;
+    public ComboBox<String> comboMnD;
+    public ComboBox<String> comboMnF;
 
     public GridPaneFormulaireReservation() {
 
@@ -29,11 +27,19 @@ public class GridPaneFormulaireReservation extends GridPane {
         this.setGridLinesVisible(false);
         int ligne = 0;
 
-        DateCalendrier today = new DateCalendrier();
 
-        Label labelDate = new Label(today.toString());
+        date = new DateCalendrier();
+        labelDate = new Label();
+        comboHd = new ComboBox<>();
+        comboHf = new ComboBox<>();
+        comboMnD = new ComboBox<>();
+        comboMnF = new ComboBox<>();
+
+        labelDate = new Label(date.toString());
         labelDate.setPadding(new Insets(2));
         labelDate.setId("date");
+
+
 
         Label labelCours = new Label("Cours ");
         labelCours.setMnemonicParsing(true);
@@ -53,21 +59,21 @@ public class GridPaneFormulaireReservation extends GridPane {
 
         Label label_nv = new Label("Niveau ");
 
-        ComboBox<String> comboHeureDebut = new ComboBox<>();
-        comboHeureDebut.getItems().addAll("07", "08", "09", "10", "11", "13", "14", "15");
-        comboHeureDebut.setValue("07");
 
-        ComboBox<String> comboMinuteDebut = new ComboBox<>();
-        comboMinuteDebut.getItems().addAll("00", "15", "30", "45");
-        comboMinuteDebut.setValue("00");
+        comboHd.getItems().addAll("07", "08", "09", "10", "11", "12", "13", "14", "15");
+        comboHd.setValue("07");
 
-        ComboBox<String> comboHeureFin = new ComboBox<>();
-        comboHeureFin.getItems().addAll("07", "08", "09", "10", "11", "13", "14", "15");
-        comboHeureFin.setValue("10");
 
-        ComboBox<String> comboMinuteFin = new ComboBox<>();
-        comboMinuteFin.getItems().addAll("00", "15", "30", "45");
-        comboMinuteFin.setValue("30");
+        comboMnD.getItems().addAll("00", "15", "30", "45");
+        comboMnD.setValue("00");
+
+
+        comboHf.getItems().addAll("07", "08", "09", "10", "11", "12", "13", "14", "15");
+        comboHf.setValue("10");
+
+
+        comboMnF.getItems().addAll("00", "15", "30", "45");
+        comboMnF.setValue("30");
 
         // Bouton d'enregistrement/D'annulement
         Button boutonAnnul = new Button("Annuler");
@@ -88,23 +94,23 @@ public class GridPaneFormulaireReservation extends GridPane {
 
         Separator separateur = new Separator();
 
-        TextField text_cours = new TextField();
-        text_cours.setPrefHeight(3);
+        textFieldCours = new TextField();
+        textFieldCours.setPrefHeight(3);
 
-        Platform.runLater(() -> text_cours.requestFocus());
+        Platform.runLater(textFieldCours::requestFocus);
 
         this.add(labelDate, 1, ligne++, 6, 1);
         this.add(labelCours, 0, ligne, 1, 1);
-        this.add(text_cours, 1, ligne++, 5, 1);
+        this.add(textFieldCours, 1, ligne++, 5, 1);
         this.add(labelheuredebut, 0, ligne, 1, 1);
-        this.add(comboHeureDebut, 1, ligne, 1, 1);
+        this.add(comboHd, 1, ligne, 1, 1);
         this.add(label_h, 2, ligne, 1, 1);
-        this.add(comboMinuteDebut, 3, ligne, 1, 1);
+        this.add(comboMnD, 3, ligne, 1, 1);
         this.add(label_mn, 4, ligne++, 1, 1);
         this.add(label_a, 0, ligne, 1, 1);
-        this.add(comboHeureFin, 1, ligne, 1, 1);
+        this.add(comboHf, 1, ligne, 1, 1);
         this.add(label_h_fi, 2, ligne, 1, 1);
-        this.add(comboMinuteFin, 3, ligne, 1, 1);
+        this.add(comboMnF, 3, ligne, 1, 1);
         this.add(label_mn_fi, 4, ligne++, 1, 1);
 
         this.add(label_nv, 0, ligne, 1, 1);
@@ -113,7 +119,41 @@ public class GridPaneFormulaireReservation extends GridPane {
         this.add(boutonDur, 1, ligne, 1, 1);
         this.add(boutonExpert, 2, ligne++, 1, 1);
 
+        boutonEnreg.setOnAction(HBoxRoot.getControleur());
+        boutonAnnul.setOnAction(HBoxRoot.getControleur());
+        comboHd.setOnAction(HBoxRoot.getControleur());
+        comboHf.setOnAction(HBoxRoot.getControleur());
+        comboMnD.setOnAction(HBoxRoot.getControleur());
+        comboMnF.setOnAction(HBoxRoot.getControleur());
+
         this.add(boutonEnreg, 1, ligne, 1, 1);
         this.add(boutonAnnul, 2, ligne, 1, 1);
     }
+
+    public void update(DateCalendrier date_a_modif) {
+        this.date = date_a_modif;
+        labelDate.setText(date.toString());
+
+    }
+
+    public String getTextFieldCours() {
+        return this.textFieldCours.getText();
+    }
+
+    public DateCalendrier getDate() {
+        return this.date;
+    }
+
+    public Horaire getHoraireDebut() {
+        return new Horaire(this.comboHd.getSelectionModel().getSelectedIndex() + 7,
+                this.comboMnD.getSelectionModel().getSelectedIndex() * 15);
+    }
+
+    public Horaire getHoraireFin(){
+        return new Horaire(this.comboHf.getSelectionModel().getSelectedIndex() + 7,
+                this.comboMnF.getSelectionModel().getSelectedIndex() * 15);
+    }
+
+
+    // handle String cours = HboxRoot.getFormulaire().getTextFieldCours();
 }
