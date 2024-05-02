@@ -154,6 +154,14 @@ public class GridPaneFormulaireReservation extends GridPane {
                 this.comboMnF.getSelectionModel().getSelectedIndex() * 15);
     }
 
+    public void annuler(){
+        textFieldCours.setText(" ");
+        comboHd.setValue("07");
+        comboMnD.setValue("00");
+        comboHf.setValue("10");
+        comboMnF.setValue("30");
+    }
+
 
     // handle String cours = HboxRoot.getFormulaire().getTextFieldCours();
 }

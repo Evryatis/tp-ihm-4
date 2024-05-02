@@ -5,8 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import modele.*;
+import org.controlsfx.control.spreadsheet.Grid;
 import vue.GridPaneFormulaireReservation;
 import vue.HBoxRoot;
 import vue.VBoxCalendrier;
@@ -49,6 +51,12 @@ public class Controleur implements EventHandler {
                 Reservation nouv_reserv;
                 nouv_reserv = new Reservation(date_reserv, horaireDebut, horaireFin, intitule);
                 System.out.println(nouv_reserv);
+            }
+            if (((Button) event.getSource()).getText().equals("Annuler")){
+
+                reservationPaneDef.annuler();
+
+
             }
 
 
